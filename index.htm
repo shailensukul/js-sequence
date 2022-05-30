@@ -6,27 +6,44 @@
     <script src="underscore-min.js"></script>
     <script src="sequence-diagram-min.js"></script>
     <script>
-        function draw() {
-            var text = document.getElementById("input").value;
-            document.getElementById("diagram").innerHTML = "";
+        function draw(topElement) {
+            var text = topElement.value;
+            var diag = topElement.parentNode.querySelector(".diagram");
+            diag.innerHTML = "";
             var diagram = Diagram.parse(text);
-            diagram.drawSVG("diagram", { theme: 'simple' });
+            diagram.drawSVG(diag, { theme: 'simple' });
         }
+
+        function add() {
+            const div = document.createElement('div');
+            div.innerHTML = `
+            <textarea class="input" rows="10" cols="100" onkeyup="draw(this)"></textarea>
+            <div>
+                <button onclick="remove(this)">Remove</button>
+            </div>
+            <div class="diagram"></div>
+            <hr/>
+            `;
+            document.getElementById("content").appendChild(div);
+        }
+
+        function remove(input) { 
+            document.getElementById("content").removeChild(input.parentNode.parentNode);
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){ 
+            add();
+        }, false);
         
     </script>
 </head>
 
 <body>
     <div>
-        <div>
-            <div>
-                <textarea id="input" rows="20" cols="100" onkeyup="draw()"></textarea>
-            </div>
+        <h1>JS-Sequence Diagrams</h1>
+        <div id="content">       
         </div>
-        <div id="diagram"></div>
-        <script>
-            document.getElementById("input").focus();
-        </script>
+        <button onclick="add()">Add</button>
     </div>
 </body>
 
