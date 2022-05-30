@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <script src="webfont.js"></script>
+    <script src="snap.svg-min.js"></script>
+    <script src="underscore-min.js"></script>
+    <script src="sequence-diagram-min.js"></script>
+    <script>
+        function draw() {
+            var text = document.getElementById("input").value;
+            document.getElementById("diagram").innerHTML = "";
+            var diagram = Diagram.parse(text);
+            diagram.drawSVG("diagram", { theme: 'simple' });
+        }
+        
+    </script>
+</head>
+
+<body>
+    <div>
+        <div>
+            <div>
+                <textarea id="input" rows="20" cols="100" onkeyup="draw()"></textarea>
+            </div>
+        </div>
+        <div id="diagram"></div>
+        <script>
+            document.getElementById("input").focus();
+        </script>
+    </div>
+</body>
+
+</html>
