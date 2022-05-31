@@ -17,18 +17,20 @@
         function add() {
             const div = document.createElement('div');
             div.innerHTML = `
-            <textarea class="input" rows="10" cols="100" onkeyup="draw(this)"></textarea>
             <div>
-                <button onclick="remove(this)">Remove</button>
+                <textarea class="input" rows="10" cols="100" onkeyup="draw(this)"></textarea>
+                <div>
+                    <button onclick="remove(this)">Remove</button>
+                </div>
+                <div class="diagram"></div>
             </div>
-            <div class="diagram"></div>
             <hr/>
             `;
             document.getElementById("content").appendChild(div);
         }
 
         function remove(input) { 
-            document.getElementById("content").removeChild(input.parentNode.parentNode);
+            document.getElementById("content").removeChild(input.parentNode.parentNode.parentNode);
         }
 
         document.addEventListener("DOMContentLoaded", function(){ 
