@@ -18,7 +18,7 @@ title: blah
 a->b: text
 
 // use dashed lines for the connector
-a->b: text
+a-->b: text
 
 // put a note, left of a
 note left of a: note text
