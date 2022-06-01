@@ -20,6 +20,9 @@ a->b: text
 // use dashed lines for the connector
 a-->b: text
 
+// connect a to b with a linebreak in some text
+a->b: text\n text2
+
 // put a note, left of a
 note left of a: note text
 
