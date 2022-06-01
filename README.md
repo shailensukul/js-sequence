@@ -50,4 +50,4 @@ Note over a,b: Note over both a and b
 ![image](https://user-images.githubusercontent.com/564911/171313023-28630025-f342-4006-9de5-30984d164b3b.png)
 
 
-If this was useful, you could <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="shailens" data-color="#5F7FFF" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+If this was useful, you could [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/shailens)
