@@ -7,7 +7,7 @@ This is a great, lightweight tool to draw flow diagrams locally, without any dep
 
 * Pull this repository to a folder
 * Bookmark `index.htm`
-* Reference to the syntax at (the js sequence website)[https://bramp.github.io/js-sequence-diagrams/]
+* Reference to the syntax at [the js sequence website](https://bramp.github.io/js-sequence-diagrams/)
 
 ## Features
 
