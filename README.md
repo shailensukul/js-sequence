@@ -50,4 +50,4 @@ Note over a,b: Note over both a and b
 ![image](https://user-images.githubusercontent.com/564911/171313023-28630025-f342-4006-9de5-30984d164b3b.png)
 
 
-If this was useful, you could buy me a <a href="https://www.buymeacoffee.com/shailens">![image](https://user-images.githubusercontent.com/564911/171313635-4bf90878-9335-4313-8809-83d9f2929166.png)</a>
+If this was useful, you could <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="shailens" data-color="#5F7FFF" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
