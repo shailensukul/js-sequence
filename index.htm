@@ -11,16 +11,18 @@
             var diag = topElement.parentNode.querySelector(".diagram");
             diag.innerHTML = "";
             var diagram = Diagram.parse(text);
-            diagram.drawSVG(diag, { theme: 'simple' });
+            var svg = diagram.drawSVG(diag, { theme: 'simple' });
         }
 
         function add() {
             const div = document.createElement('div');
             div.innerHTML = `
             <div>
-                <textarea class="input" rows="10" cols="100" onkeyup="draw(this)"></textarea>
+                <textarea class="input" rows="10" cols="100" onkeyup="draw(this);download(this)"></textarea>
                 <div>
-                    <button onclick="remove(this)">Remove</button>
+                    <button type="button" onclick="remove(this)">Remove</button>
+                    &nbsp
+                    <a href="#" class="download" download="diagram.svg">Download as SVG</a>
                 </div>
                 <div class="diagram"></div>
             </div>
@@ -32,6 +34,21 @@
         function remove(input) { 
             document.getElementById("content").removeChild(input.parentNode.parentNode.parentNode);
         }
+
+        function download(topElement) {
+            var diagram_div =  topElement.parentElement.parentElement.querySelector(".diagram");
+            var svg = diagram_div.querySelector('svg');
+            var data = topElement.value;
+          
+            var width = parseInt(svg.width.baseVal.value);
+            var height = parseInt(svg.height.baseVal.value);
+            var xml = '<?xml version="1.0" encoding="utf-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"><svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '" xmlns:xlink="http://www.w3.org/1999/xlink"><source><![CDATA[' + data + ']]></source>' + svg.innerHTML + '</svg>';
+
+            var a = topElement.parentElement.parentElement.querySelector(".download");
+            var datauristring = "data:image/svg+xml," + encodeURIComponent(xml);
+            a.href = datauristring;
+        };
+
 
         document.addEventListener("DOMContentLoaded", function(){ 
             add();
@@ -45,7 +62,7 @@
         <h1>JS-Sequence Diagrams</h1>
         <div id="content">       
         </div>
-        <button onclick="add()">Add</button>
+        <button type="button" onclick="add()">Add</button>
     </div>
 </body>
 
