@@ -20,6 +20,12 @@ a->b: text
 // use dashed lines for the connector
 a-->b: text
 
+// use open arrow for the connector
+a->>b: text
+
+// use dashed, open arrow for the connector
+a-->>b: text
+
 // connect a to b with a linebreak in some text
 a->b: text\n text2
 
@@ -28,6 +34,12 @@ note left of a: note text
 
 // pit a note, right of a
 note right of a: note text
+
+// put a note over a
+Note over a: Note over a
+
+// put a note over a and b
+Note over a,b: Note over both a and b
 ```
 
 ## Features
