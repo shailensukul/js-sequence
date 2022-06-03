@@ -14,21 +14,28 @@
             var svg = diagram.drawSVG(diag, { theme: 'simple' });
         }
 
-        function add() {
+        function add(item) {
             const div = document.createElement('div');
             div.innerHTML = `
             <div>
-                <textarea class="input" rows="10" cols="100" onkeyup="draw(this);download(this)"></textarea>
+                <textarea class="input" rows="10" cols="100" onkeyup="draw(this);download(this);save()">` 
+                    + item + 
+                    `</textarea>
                 <div>
                     <button type="button" onclick="remove(this)">Remove</button>
-                    &nbsp
-                    <a href="#" class="download" download="diagram.svg">Download as SVG</a>
                 </div>
                 <div class="diagram"></div>
+                <a href="#" class="download" download="diagram.svg">Download as SVG</a>
             </div>
             <hr/>
             `;
+            let el = div.querySelector("textarea");            
             document.getElementById("content").appendChild(div);
+            setInterval(function() {
+                draw(el);
+                download(el);
+                save();
+            }, 100);
         }
 
         function remove(input) { 
@@ -36,33 +43,54 @@
         }
 
         function download(topElement) {
-            var diagram_div =  topElement.parentElement.parentElement.querySelector(".diagram");
+            var diagram_div =  topElement.parentElement.querySelector(".diagram");
             var svg = diagram_div.querySelector('svg');
+            if (svg == undefined || svg == null) return;
             var data = topElement.value;
           
             var width = parseInt(svg.width.baseVal.value);
             var height = parseInt(svg.height.baseVal.value);
             var xml = '<?xml version="1.0" encoding="utf-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"><svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '" xmlns:xlink="http://www.w3.org/1999/xlink"><source><![CDATA[' + data + ']]></source>' + svg.innerHTML + '</svg>';
 
-            var a = topElement.parentElement.parentElement.querySelector(".download");
+            var a = topElement.parentElement.querySelector(".download");
             var datauristring = "data:image/svg+xml," + encodeURIComponent(xml);
             a.href = datauristring;
         };
 
+        function save() {
+            let rows = document.getElementById("content")?.querySelectorAll("textarea");
+            let json = "["
+            if (!!rows) {
+                rows.forEach(function(row) {
+                    json += JSON.stringify(row.value) + ",";
+                });
+            }
+            json = json.substring(0, json.length-1);
+            json += "]";
+            localStorage.setItem("jssequence", json);
+        }
+
+        function load() {
+            let items = JSON.parse(localStorage.getItem("jssequence") || `["title: Seq Diagram\na->b:description"]`);
+            items.forEach(function(item) {
+                add(item);
+            });
+        }
 
         document.addEventListener("DOMContentLoaded", function(){ 
-            add();
+            document.getElementById("content").innerHTML = "";
+            load();
         }, false);
         
     </script>
 </head>
 
 <body>
+    <h1>JS-Sequence Diagrams</h1>
     <div>
-        <h1>JS-Sequence Diagrams</h1>
         <div id="content">       
         </div>
-        <button type="button" onclick="add()">Add</button>
+        <button type="button" onclick="add('')">Add</button>
     </div>
 </body>
 
