@@ -45,7 +45,7 @@ Note over a,b: Note over both a and b
 ## Features
 * break up flow diagrams
 * export each diagram to SVG
-* save text to local storage (planned)
+* save text to localstorage
 
 ![image](https://user-images.githubusercontent.com/564911/171313023-28630025-f342-4006-9de5-30984d164b3b.png)
 
